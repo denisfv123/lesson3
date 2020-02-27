@@ -54,7 +54,7 @@ class UserValidation extends Validation {
                     .min(1)
                     .max(30)
                     .required(),
-                _method: this.Joi.string().valid('UPDATE', 'update'),
+                _method: this.Joi.string().valid('PUT', 'put'),
                 _csrf: this.Joi.string().required(),
             })
             .validate(data);

@@ -82,19 +82,16 @@ async function create(req, res, next) {
 
         const user = await UserService.create(req.body);
 
-        return res.status(200).json({
-            data: user,
-            csrfToken: req.csrfToken(),
-        });
+        res.redirect('/v1/users/');
     } catch (error) {
         if (error instanceof ValidationError) {
-            return res.status(422).json({
+            return res.status(422).render('error.ejs', {
                 message: error.name,
                 details: error.message,
             });
         }
 
-        res.status(500).json({
+        res.status(500).render('error.ejs', {
             message: error.name,
             details: error.message,
         });
@@ -120,19 +117,16 @@ async function updateById(req, res, next) {
 
         const updatedUser = await UserService.updateById(req.body.id, req.body);
 
-        return res.status(200).json({
-            data: updatedUser,
-            csrfToken: req.csrfToken(),
-        });
+        res.redirect('/v1/users/');
     } catch (error) {
         if (error instanceof ValidationError) {
-            return res.status(422).json({
+            return res.status(422).render('error.ejs', {
                 message: error.name,
                 details: error.message,
             });
         }
 
-        res.status(500).json({
+        res.status(500).render('error.ejs', {
             message: error.name,
             details: error.message,
         });
@@ -158,19 +152,16 @@ async function deleteById(req, res, next) {
 
         const deletedUser = await UserService.deleteById(req.body.id);
 
-        return res.status(200).json({
-            data: deletedUser,
-            csrfToken: req.csrfToken(),
-        });
+        res.redirect('/v1/users/');
     } catch (error) {
         if (error instanceof ValidationError) {
-            return res.status(422).json({
+            return res.status(422).render('error.ejs', {
                 message: error.name,
                 details: error.message,
             });
         }
 
-        res.status(500).json({
+        res.status(500).render('error.ejs', {
             message: error.name,
             details: error.message,
         });

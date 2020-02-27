@@ -5,7 +5,7 @@
 </head>
 <body>
 
-    <p><a href="create/"><button>CREATE</button></a></p>
+    <p><a href="/v1/users/create/"><button>CREATE</button></a></p>
 
     <table width="100%" border="1">
        
@@ -22,11 +22,11 @@
           <th>  <%= i %> </th>
           <td>  <%= data[i].email  %> </td>
           <td>  
-            <a href='update/<%= data[i]._id%>'>update</a>
+            <a href='/v1/users/update/<%= data[i]._id%>'>update</a>
           </td>
           <td>  <%= data[i].fullName %> </td>
           <td> 
-            <form method="POST" action="/v1/users/delete/<%=data[i]._id %>">
+            <form method="POST" action="/v1/users/<%=data[i]._id %>?_method=DELETE">
               <input type="hidden" name="_method" value="DELETE">
               <input type="hidden" name="_csrf" value="<%=csrfToken %>">
               <input type="hidden" name="id" value="<%=data[i]._id %>">

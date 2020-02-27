@@ -5,6 +5,7 @@ const cors = require('cors');
 const csrf = require('csurf');
 const helmet = require('helmet');
 const path = require('path');
+const methodOverride = require('method-override');
 
 module.exports = {
     /**
@@ -20,6 +21,8 @@ module.exports = {
             }),
         );
         app.use(bodyParser.json());
+        // put, delete from client
+        app.use(methodOverride('_method'));
         // set template engine ejs
         app.set('view engine', 'ejs');
         // path to views directory
